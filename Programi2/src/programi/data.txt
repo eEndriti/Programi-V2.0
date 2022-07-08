@@ -1,0 +1,1 @@
+jdbc:sqlserver://localhost:1433;databaseName=programi;integratedSecurity=true;encrypt=true;trustServerCertificate=true;#C:\Users\Pc\Desktop\Fatura#C:\Users\Pc\Desktop\Oferta#C:\Users\Pc\Desktop\Garancione
