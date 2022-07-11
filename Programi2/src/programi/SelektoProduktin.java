@@ -323,6 +323,8 @@ public class SelektoProduktin extends javax.swing.JFrame {
            faturo();
         }else if(thirrja.equals("Shitje")){
             shitje();
+        }else if(thirrja.equals("ndryshoF")){
+            ndryshoF();
         }
         
     }//GEN-LAST:event_selektoProduktinMousePressed
@@ -345,7 +347,6 @@ public class SelektoProduktin extends javax.swing.JFrame {
                 ResultSet rs = s.executeQuery("Select Tvsh from Kategoria where Emri = '"+kategoriaEProduktit+"'");
                 while(rs.next()){
                     tvsh = rs.getInt(1);
-                    System.out.println(tvsh);
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -370,6 +371,35 @@ public class SelektoProduktin extends javax.swing.JFrame {
         Shitje.cmimiShitjes = Double.parseDouble(heqjaEuro);
         Shitje.sasia = Integer.parseInt(jTable1.getModel().getValueAt(modelRow,3).toString());
         Shitje.shtoData();
+        dispose();
+    }
+    public void ndryshoF(){
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+             int row = jTable1.getSelectedRow();
+             int modelRow = jTable1.convertRowIndexToModel(row);        
+            
+            ndryshoFaturen.produkti = jTable1.getModel().getValueAt(modelRow, 1).toString();
+            ndryshoFaturen.pershkrimi = jTable1.getModel().getValueAt(modelRow, 2).toString();
+            ndryshoFaturen.sasiaNeStok = jTable1.getModel().getValueAt(modelRow, 3).toString();
+            ndryshoFaturen.cmimi = jTable1.getModel().getValueAt(modelRow, 4).toString();           
+            ndryshoFaturen.idProduktit = Integer.parseInt(jTable1.getModel().getValueAt(modelRow, 0).toString());
+            
+            String kategoriaEProduktit = jTable1.getModel().getValueAt(modelRow, 8).toString();
+            int tvsh = 0;
+            try{ 
+                Statement s = prg.con().createStatement();
+                ResultSet rs = s.executeQuery("Select Tvsh from Kategoria where Emri = '"+kategoriaEProduktit+"'");
+                while(rs.next()){
+                    tvsh = rs.getInt(1);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            Faturo.tvsh = tvsh;
+            alert1.setText(" ");
+            
+         
+        ndryshoFaturen.loadData();
         dispose();
     }
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed

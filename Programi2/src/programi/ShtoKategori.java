@@ -395,13 +395,25 @@ public class ShtoKategori extends javax.swing.JFrame {
             shtoK();
     }
     public void shtoK(){
+        alert4.setText("");
         String prd = kategoria.getText();
         int tv = Integer.parseInt(tvshField.getText());
-        
+        boolean bool = false;
         try{
             Statement s = prg.con().createStatement();
-            s.execute("Insert into Kategoria (Emri,Tvsh) values ('"+prd+"','"+tv+"')");
+            ResultSet rs = s.executeQuery("Select Emri,Tvsh from Kategoria");
+            while(rs.next()){
+                if (prd.equals(rs.getString(1)) && tv == rs.getInt(2)) {
+                    alert4.setText("Kjo Kategori Egziston!");
+                    bool = true;
+                }
+            }
+            if (!bool) {
+            Statement s1 = prg.con().createStatement();
+            s1.execute("Insert into Kategoria (Emri,Tvsh) values ('"+prd+"','"+tv+"')");
             tabela();
+            }
+            
         }catch(SQLException e){
             e.printStackTrace();
         } 

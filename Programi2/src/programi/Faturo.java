@@ -220,9 +220,19 @@ public class Faturo extends javax.swing.JFrame {
 
         sasia1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         sasia1.setToolTipText("");
+        sasia1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sasia1KeyPressed(evt);
+            }
+        });
 
         cmimi1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         cmimi1.setToolTipText("");
+        cmimi1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmimi1KeyPressed(evt);
+            }
+        });
 
         shtoProduktin.setBackground(new java.awt.Color(0, 153, 255));
         shtoProduktin.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -738,7 +748,6 @@ public class Faturo extends javax.swing.JFrame {
                String sas = String.valueOf(dtm.getValueAt(i-1, 4));
                 int sasia = Integer.parseInt(sas);
                String alo = String.valueOf(dtm.getValueAt(i-1, 3));
-                    System.out.println(alo);
                 String stringTvsh = String.valueOf(dtm.getValueAt(i-1,8));
                 String heqjaPerqindjes = stringTvsh.substring(0, stringTvsh.length()-1);
                 double tv = Double.parseDouble(heqjaPerqindjes);
@@ -749,7 +758,6 @@ public class Faturo extends javax.swing.JFrame {
                 double hqD = Double.parseDouble(heqjaEuro);
                    
                 double llogaritTvsh = -(hqD/(tv/100.0+1)-hqD);
-                    System.out.println(llogaritTvsh+" tvsh");
                 double llogcpt = (hqD-llogaritTvsh) * sasia;
                 
                 
@@ -827,9 +835,9 @@ public class Faturo extends javax.swing.JFrame {
                 Statement s = prg.con().createStatement();
                 String s1 = String.valueOf(v.get(8));
                 String heqjaLaserike = s1.substring(0, s1.length()-1);
-                s.execute("Insert into daljetFaturore (klienti,nrBiznesit,adresa,nrFiskal,nrTelefonit,nrRendor,produkti,pershkrimi,sasia,njesia,cmimiPerNjesi,tvsh,cmimiMeTvsh,vleraMeTvsh,nrIdentifikues,faturaId,idProduktit)"
+                s.execute("Insert into daljetFaturore (klienti,nrBiznesit,adresa,nrFiskal,nrTelefonit,nrRendor,produkti,pershkrimi,sasia,njesia,cmimiPerNjesi,tvsh,cmimiMeTvsh,vleraMeTvsh,nrIdentifikues,faturaId,idProduktit,pagesa,komenti)"
                         + " values ('"+emriKlientit+"','"+nrBiznesit+"','"+adresa+"','"+nrFiskal+"','"+nrTelefonit+"','"+v.get(0)+"','"+v.get(2)+"','"+v.get(3)+"','"+v.get(4)+"','"
-                        +v.get(5)+"','"+cpnf+"','"+heqjaLaserike+"%','"+cmtf+" €','"+vmtf+" €','"+nrIdenetifikues+"','"+faturaID+"','"+v.get(1)+"')");
+                        +v.get(5)+"','"+cpnf+"','"+heqjaLaserike+"%','"+cmtf+" €','"+vmtf+" €','"+nrIdenetifikues+"','"+faturaID+"','"+v.get(1)+"','"+pagesa+"','"+komenti+"')");
                 
             }catch(SQLException e){
                 e.printStackTrace();
@@ -984,6 +992,14 @@ public class Faturo extends javax.swing.JFrame {
             Logger.getLogger(Fillimi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10MousePressed
+
+    private void sasia1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sasia1KeyPressed
+        Programi.numberCheck(evt);
+    }//GEN-LAST:event_sasia1KeyPressed
+
+    private void cmimi1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmimi1KeyPressed
+        Programi.numberCheck(evt);
+    }//GEN-LAST:event_cmimi1KeyPressed
     public void llogaritTotalin(){
         int rows = jTable1.getRowCount();
         if (rows == 0) {                                   

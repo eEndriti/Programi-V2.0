@@ -118,6 +118,7 @@ public class pdfFatura {
             
         }catch(Exception e){
             System.out.println("Errorrr Creating PDF!");
+            e.printStackTrace();
         }
     }
     public static void shtoTeDhenatFirmes(Document doc) throws DocumentException, IOException{
@@ -126,7 +127,7 @@ public class pdfFatura {
         PdfPTable tb = new PdfPTable(columnWidth);
         tb.setSpacingAfter(5f);
         // shto logon e firmes
-        Image img = Image.getInstance("C:\\Users\\Pc\\Documents\\Programi-main (1)\\Programi-main\\Programi2\\src\\programi\\data\\blogo-removebg-preview (1).png");
+        Image img = Image.getInstance("C:\\Users\\Pc\\Documents\\NetBeansProjects\\Programi\\Programi-main\\Programi2\\src\\programi\\data\\blogo-removebg-preview (1).png");
         PdfPCell c1 = new PdfPCell(img);
         c1.setBorder(Rectangle.BOTTOM);
         

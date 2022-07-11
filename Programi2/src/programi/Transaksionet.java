@@ -374,9 +374,15 @@ public class Transaksionet extends javax.swing.JFrame {
         }else{
             int row = jTable1.getSelectedRow();
             String kategoria = jTable1.getModel().getValueAt(row, 1).toString();
+            String nrId = jTable1.getModel().getValueAt(row, 3).toString();
+            String data = jTable1.getModel().getValueAt(row, 5).toString();
             if (kategoria.equals("Faturë")) {
+               
+                ndryshoFaturen.nrIdentifikuesFillestar = nrId;
+                ndryshoFaturen.dataFillestare = data;
                 ndryshoFaturen nf = new ndryshoFaturen();
                 nf.setVisible(true);
+               
                 dispose();
             }else if(kategoria.equals("Shitje")){
                 ndryshoShitje ns = new ndryshoShitje();

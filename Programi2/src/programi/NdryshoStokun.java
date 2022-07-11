@@ -413,6 +413,8 @@ public class NdryshoStokun extends javax.swing.JFrame {
         double cms = Double.parseDouble(cmimis.getText());
         String fur = furnitori.getText();
         String fat = fatura.getText();
+        int kategoria = choice1.getSelectedIndex();
+        String kategoriaFinale = kgId.get(kategoria);
         
         int kg = choice1.getSelectedIndex();
         kg++;
@@ -422,7 +424,7 @@ public class NdryshoStokun extends javax.swing.JFrame {
             if (kg == (i+1)) {
                 try{
                     Statement s = prg.con().createStatement();
-                    s.execute("Update Produkti set Emri = '"+prd+"', Pershkrimi = '"+prsh+"', Sasia = '"+sas+"', Cmimi = '"+cms+"', Fatura = '"+fa+"', Furnitori = '"+fu+"', cmimiFurnizimit = '"+cmf+"' where ProduktiID ="+id);
+                    s.execute("Update Produkti set Emri = '"+prd+"', Pershkrimi = '"+prsh+"', Sasia = '"+sas+"', Cmimi = '"+cms+"', Fatura = '"+fa+"', Furnitori = '"+fu+"', cmimiFurnizimit = '"+cmf+"', kategoriaID = '"+kategoriaFinale+"' where ProduktiID ="+id);
             
                 }catch(SQLException e){
                     e.printStackTrace();
