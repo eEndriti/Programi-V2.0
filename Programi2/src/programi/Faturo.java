@@ -918,6 +918,7 @@ public class Faturo extends javax.swing.JFrame {
         LocalDate dateObj = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String date = dateObj.format(formatter);
+        System.out.println("TEST");
         return date;
     
     }
